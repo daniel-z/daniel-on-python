@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import pdb;
 
 class ExercisesCatalog:
     def __init__(self, params):
@@ -108,13 +109,42 @@ class CustomizedHelloWorld:
         print "\n Welcome " + name + "!!"
         raw_input("\n ... press enter to finish ...")
 
+class FizzBuzz:
+    name = "Fizz Buzz from Code Eval"
+    reference = "https://www.codeeval.com/browse/1/"
+    def run(self):
+        print "Welcome to the Fizz Buzz games..."
+        filePath = raw_input("Please enter the parameters file path and hit enter:  ")
+        paramsFile = open(filePath, 'r')
+
+        print '\nResult: \n'
+        for line in paramsFile:
+            (numberA, numberB, numberLimit ) = line.split()
+            finalList = []
+
+
+            for serieNumber in xrange(1, int(numberLimit)+1):
+                resultStr = str(serieNumber)
+
+                if not serieNumber % int(numberA):
+                    resultStr = 'F'
+                    if not serieNumber % int(numberB):
+                        resultStr = 'FB'
+                elif not serieNumber % int(numberB):
+                    resultStr = 'B'
+                finalList.append(resultStr)
+
+            print ', '.join(finalList)
+        print '\n'
+
 # --------------------
 # Index
 # --------------------
 
 ExerciseObject = Exercises({'exercises' : [
     PercentageCalculator(),
-    CustomizedHelloWorld()
+    CustomizedHelloWorld(),
+    FizzBuzz()
 ]})
 
 MyCatalog = ExercisesCatalog({'ExerciseObject': ExerciseObject})
