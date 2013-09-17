@@ -44,16 +44,16 @@ class ExercisesCatalog:
     def executeProgram(self, exercise):
         print "\n\n"
         print "............................."
-        print "Executing: " + exercise['name']
+        print "Executing: " + exercise.name
         print "............................."
-        exercise['instance'].run()
+        exercise.run()
         print "............................."
         print "\n\n"
 
     def listExercises(self):
         allExercises = self.ExercisesObject.getExercises()
         for index in range(len(allExercises)):
-            print (index+1), ".-", allExercises[index]['name']
+            print (index+1), ".-", allExercises[index].name +' (' + allExercises[index].reference + ')'
         return
 
     def getSelectedExercise(self,exerciseIndex):
@@ -71,10 +71,10 @@ class Exercises:
             self.add(exercise)
 
     def add(self,exercise):
-        if exercise and exercise['name'] and exercise['instance']:
+        if exercise and exercise.name:
             self.exercises.append(exercise)
         else:
-            print "every exercise must have 'name' and 'instance' attributes"
+            print "every exercise must have a 'name' attribute"
 
     def totalNumber(self):
         return len(self.exercises)
@@ -87,6 +87,8 @@ class Exercises:
 # --------------------
 
 class PercentageCalculator:
+    name = "Simple Percentage Calculator"
+    reference = "-"
     def run(self):
         print "Numbers and Math"
         print "Now we will execute percentage calculator"
@@ -97,6 +99,8 @@ class PercentageCalculator:
         raw_input("\n ... press enter to finish ...")
 
 class CustomizedHelloWorld:
+    name = "Customized Hello World"
+    reference = "-"
     def run(self):
         print "Welcome Stranger!"
         name = raw_input("Can you please insert your name and press enter: ")
@@ -108,17 +112,11 @@ class CustomizedHelloWorld:
 # Index
 # --------------------
 
-exercises = [{
-    'name': "Simple Percentage Calculator",
-    'instance': PercentageCalculator()
-},
-{
-    'name': "Customized Hello World",
-    'instance': CustomizedHelloWorld()
-}]
+ExerciseObject = Exercises({'exercises' : [
+    PercentageCalculator(),
+    CustomizedHelloWorld()
+]})
 
-
-ExerciseObject = Exercises({'exercises' : exercises})
 MyCatalog = ExercisesCatalog({'ExerciseObject': ExerciseObject})
 MyCatalog.start()
 
