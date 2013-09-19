@@ -88,7 +88,7 @@ def getUserData():
     return userData
 
 def generateData():
-    dataHeaders = 'ssn,alternate id,health plan,employee ssn,first name,middle name,last name,relationship,zip code,dob,gender,email 1,email 2,eligibility date,organization unit'
+    dataHeaders = 'ssn,alternate id,health plan,employee ssn,first name,middle name,last name,relationship,zip code,dob,gender,email 1,email 2,eligibility date,organization unit\n'
     userDataFile = open(OUTPUT_FILE,'w')
     userDataFile.write(dataHeaders)
     for index in range(0,NUMBER_OF_USERS):
